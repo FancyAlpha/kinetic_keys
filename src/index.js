@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'typeface-roboto';
 
 import Home from './routes/home';
 import Experiment from "./routes/experiment";
