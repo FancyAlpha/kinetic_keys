@@ -1,10 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1X3XJPjkdL903dEzRoZl8w6H4OM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\tarak\AppData\Roaming\npm\node_modules\prettier" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\routes" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="" />
+      <created>1580443390277</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580443390277</updated>
+      <workItem from="1580443398270" duration="7073000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implemented a little Material UI on front-page and fixed Routes">
+      <created>1580451055724</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580451055724</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented a little Material UI on front-page and fixed Routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented a little Material UI on front-page and fixed Routes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1580316531704" />
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580451054024">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580451054024" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1580316542198">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1580316542198" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1580316542198">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1580316542198" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1580316542198">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1580316542198" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1580316542198">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1580316542198" />
+    <state x="437" y="0" key="RollbackChangesDialog" timestamp="1580319060254">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580319060254" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580317470152">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580317470152" />
   </component>
 </project>

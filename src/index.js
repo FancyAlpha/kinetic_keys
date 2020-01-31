@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import 'typeface-roboto';
 
-import Home from './routes/home';
-import Experiment from "./routes/experiment";
+import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
 /** my starts code here **/
-import {Route, HashRouter} from 'react-router-dom';
+import {BrowserRouter as Router} from "react-router-dom";
 
 ReactDOM.render((
-    <HashRouter>
-        <Route path="/" component={Home}/>
-        <Route path="/experiment" component={Experiment}/>
-    </HashRouter>), document.getElementById('root'));
+    <Router>
+        <App/>
+    </Router>), document.getElementById('root'));
 /** my code ends here **/
 
 // ReactDOM.render(<Home/>, document.getElementById('root'));
