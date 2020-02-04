@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';
+import './styles.css';
 
 import {makeStyles} from '@material-ui/core/styles';
 import {Route, Link} from 'react-router-dom';
@@ -22,7 +22,7 @@ export default function Home() {
     const classes = useStyles();
 
     return (
-        <header className="App-content">
+        <header className="App-content Main-content">
             <Typography variant="h1" component={"h1"}>Kinetic Keys</Typography>
             <Typography variant="subtitle1">Type words with your body!</Typography>
             <Button variant="contained"

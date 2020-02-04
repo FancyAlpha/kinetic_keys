@@ -50,6 +50,10 @@ const useStyles = makeStyles(theme => ({
             },
         },
 
+        mainContent: {
+            flex: 1,
+        },
+
         footer: {
             background: fade(theme.palette.grey.A200, 0.2),
             color: theme.palette.grey.A400,
