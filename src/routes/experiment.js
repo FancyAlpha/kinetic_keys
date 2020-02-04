@@ -2,7 +2,7 @@ import React from 'react';
 import Divider from '@material-ui/core/Divider';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Background from '../wavy1.jpg';
+// import Background from '../wavy1.jpg';
 
 
 
@@ -46,13 +46,13 @@ function Experiment() {
     return (
         // <div style = {{backgroundImage: "url(" + Background + ")"}}>
         <div style = {bodyStyle}>
-            <br /> <br />
-            <h1 style = {pStyle}> Kinetic Keys </h1>
+            {/*<br /> <br />*/}
+            {/*<h1 style = {pStyle}> Kinetic Keys </h1>*/}
             {/* <ThemeProvider theme={theme}>
             </ThemeProvider> */}
             <Divider orientation = "vertical" variant = "fullWidth" />
-            <hr width="10" size="450" style = {{backgroundColor: "rgba(89, 183, 189, 0.7)"}}></hr>
-            <hr width = "10" size = "1000%"></hr>
+            <hr width="10" size="450" style = {{backgroundColor: "rgba(89, 183, 189, 0.7)"}}/>
+            <hr width = "10" size = "1000%"/>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 /* Import statements */
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -29,8 +29,25 @@ const useStyles = makeStyles(theme => ({
             minHeight: '100vh',
         },
 
-        nav: {
-            padding: theme.spacing(1, 0),
+        navTitle: {
+
+            margin: theme.spacing(0, 2),
+            fontWeight: 'bold',
+            color: theme.palette.grey.A700,
+            flexGrow: 1,
+            // fontSize: theme.
+        },
+
+        primaryHover: {
+            '&:hover': {
+                color: theme.palette.primary.dark,
+            },
+        },
+
+        secondaryHover: {
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
         },
 
         footer: {
@@ -50,22 +67,27 @@ function App() {
     return (
         <CssBaseline>
             <div className={styles.root}>
-                <Toolbar variant={"dense"} className={styles.nav}>
-                    <Container>
-                        <Link to={"/"}>
-                            <IconButton edge="start" aria-label="menu">
-                                <HomeIcon/>
-                            </IconButton>
-                        </Link>
+                <Toolbar variant={"dense"}>
 
-                        <Link to={"/experiment"}>
-                            <IconButton aria-label="menu">
-                                <TestTube/>
-                            </IconButton>
-                        </Link>
-                    </Container>
+                    <Link to={"/"}>
+                        <IconButton aria-label="menu" className={styles.primaryHover}>
+                            <HomeIcon/>
+                        </IconButton>
+                    </Link>
+
+                    <Link to={"/experiment"}>
+                        <IconButton aria-label="menu" className={styles.secondaryHover}>
+                            <TestTube/>
+                        </IconButton>
+                    </Link>
+
+                    <Route path={"/experiment"} exact>
+                        <Typography className={styles.navTitle} variant={"h6"} color={""}>
+                            Kinetic Keys
+                        </Typography>
+                    </Route>
+
                 </Toolbar>
-                {/*</AppBar>*/}
 
                 <Route path="/" exact component={Home}/>
                 <Route path="/experiment" exact component={Experiment}/>
