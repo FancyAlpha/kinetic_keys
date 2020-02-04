@@ -1,10 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1X3XJPjkdL903dEzRoZl8w6H4OM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\tarak\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="C:\Users\tarak\AppData\Local\JetBrains\Toolbox\apps\PhpStorm\ch-0\193.6015.48\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\styles" />
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\routes" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="" />
+      <created>1580443390277</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580443390277</updated>
+      <workItem from="1580443398270" duration="7830000" />
+      <workItem from="1580706721143" duration="14785000" />
+      <workItem from="1580790065660" duration="5693000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implemented a little Material UI on front-page and fixed Routes">
+      <created>1580451055724</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580451055724</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implemented a little Material UI on front-page and fixed Routes">
+      <created>1580451070650</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580451070650</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added appBar with icons">
+      <created>1580710986302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580710986302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="polished front page">
+      <created>1580751808284</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580751808284</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finished front-page ux and integrated experiment.js">
+      <created>1580781407433</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580781407433</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Redid experiment page grid layout">
+      <created>1580792378870</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580792378870</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented a little Material UI on front-page and fixed Routes" />
+    <MESSAGE value="added appBar with icons" />
+    <MESSAGE value="polished front page" />
+    <MESSAGE value="finished front-page ux and integrated experiment.js" />
+    <MESSAGE value="Redid experiment page grid layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redid experiment page grid layout" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1580316531704" />
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580792377191">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580792377191" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1580790003803">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1580790003803" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1580790003802">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1580790003802">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1580790003802">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
+    <state x="437" y="0" key="RollbackChangesDialog" timestamp="1580777732885">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777732885" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580792390465">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580792390465" />
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1580777746731">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777746731" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580792388507">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580792388507" />
   </component>
 </project>
