@@ -4,9 +4,9 @@
     <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +46,12 @@
     <property name="ts.external.directory.path" value="C:\Users\tarak\AppData\Local\JetBrains\Toolbox\apps\PhpStorm\ch-0\193.6015.48\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\styles" />
+      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\routes" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tarak\PhpstormProjects\kinetic_keys\src\routes" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -65,7 +66,7 @@
       <updated>1580443390277</updated>
       <workItem from="1580443398270" duration="7830000" />
       <workItem from="1580706721143" duration="14785000" />
-      <workItem from="1580790065660" duration="2261000" />
+      <workItem from="1580790065660" duration="5693000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented a little Material UI on front-page and fixed Routes">
       <created>1580451055724</created>
@@ -102,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580781407433</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Redid experiment page grid layout">
+      <created>1580792378870</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580792378870</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,17 +121,18 @@
     <MESSAGE value="added appBar with icons" />
     <MESSAGE value="polished front page" />
     <MESSAGE value="finished front-page ux and integrated experiment.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished front-page ux and integrated experiment.js" />
+    <MESSAGE value="Redid experiment page grid layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redid experiment page grid layout" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1580316531704" />
-    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580781406448">
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580792377191">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580781406448" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580792377191" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1580790003803">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -144,17 +153,17 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777732885" />
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580781413875">
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580792390465">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580781413875" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580792390465" />
     <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1580777746731">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777746731" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580781410844">
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580792388507">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580781410844" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580792388507" />
   </component>
 </project>

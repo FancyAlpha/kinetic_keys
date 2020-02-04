@@ -1,8 +1,9 @@
 import React from 'react';
-import './styles.css';
+import '../styles/styles.css';
+
+import {Route, Link} from 'react-router-dom';
 
 import {makeStyles} from '@material-ui/core/styles';
-import {Route, Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
@@ -13,8 +14,6 @@ const useStyles = makeStyles(theme => ({
     spaced: {
         margin: theme.spacing(1),
     },
-
-
 }));
 
 export default function Home() {

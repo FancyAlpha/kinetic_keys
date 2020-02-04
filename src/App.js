@@ -1,41 +1,27 @@
-/* Import statements */
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import './styles/styles.css';
+
+import {Route, Link} from 'react-router-dom';
+
+import {Container} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import {fade} from '@material-ui/core';
-
-import AppBar from "@material-ui/core/AppBar";
-// import {createMuiTheme} from '@material-ui/core/styles';
-// import {ThemeProvider} from '@material-ui/core/styles';
-
 
 import Home from './routes/home';
 import Experiment from "./routes/experiment";
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
-
 import {Home as HomeIcon, TestTube} from 'mdi-material-ui';
-import {Container} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-// import {red} from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({
-        root: {
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-        },
-
         navTitle: {
-
             margin: theme.spacing(0, 2),
             fontWeight: 'bold',
             color: theme.palette.grey.A700,
             flexGrow: 1,
-            // fontSize: theme.
         },
 
         primaryHover: {
@@ -48,10 +34,6 @@ const useStyles = makeStyles(theme => ({
             '&:hover': {
                 color: theme.palette.secondary.dark,
             },
-        },
-
-        mainContent: {
-            flex: 1,
         },
 
         footer: {
@@ -70,7 +52,7 @@ function App() {
 
     return (
         <CssBaseline>
-            <div className={styles.root}>
+            <div className={"root"}>
                 <Toolbar variant={"dense"}>
 
                     <Link to={"/"}>
@@ -86,11 +68,10 @@ function App() {
                     </Link>
 
                     <Route path={"/experiment"} exact>
-                        <Typography className={styles.navTitle} variant={"h6"} color={""}>
+                        <Typography className={styles.navTitle} variant={"h6"}>
                             Kinetic Keys
                         </Typography>
                     </Route>
-
                 </Toolbar>
 
                 <Route path="/" exact component={Home}/>
@@ -98,8 +79,10 @@ function App() {
 
                 <footer>
                     <Container className={styles.footer}>
-                        <Typography variant={"caption"}>&copy; 2020 Kinetic Keys project by Mehul
-                            Daruka, Mayank Daruka, and Pranav Rayudu.</Typography>
+                        <Typography variant={"caption"}>
+                            &copy; 2020 Kinetic Keys project by Mehul
+                            Daruka, Mayank Daruka, and Pranav Rayudu.
+                        </Typography>
                     </Container>
                 </footer>
             </div>
