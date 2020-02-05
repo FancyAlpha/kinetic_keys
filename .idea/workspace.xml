@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
+    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="Redid experiment page grid layout using CSS grid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
     </list>
@@ -64,6 +64,7 @@
       <workItem from="1580443398270" duration="7830000" />
       <workItem from="1580706721143" duration="14785000" />
       <workItem from="1580790065660" duration="5693000" />
+      <workItem from="1580925857387" duration="4936000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented a little Material UI on front-page and fixed Routes">
       <created>1580451055724</created>
@@ -107,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580792378870</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Redid experiment page grid layout using CSS grid">
+      <created>1580884674686</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580884674686</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,7 +126,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -130,7 +140,8 @@
     <MESSAGE value="polished front page" />
     <MESSAGE value="finished front-page ux and integrated experiment.js" />
     <MESSAGE value="Redid experiment page grid layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redid experiment page grid layout" />
+    <MESSAGE value="Redid experiment page grid layout using CSS grid" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redid experiment page grid layout using CSS grid" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
@@ -141,10 +152,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="321" y="74" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879495847" />
-    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580792377191">
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580931646786">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580792377191" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580931646786" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1580790003803">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -165,10 +176,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777732885" />
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580792390465">
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580884678683">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580792390465" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580884678683" />
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog" timestamp="1580879667948">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -177,9 +188,9 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777746731" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580792388507">
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580884676449">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580792388507" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1580884676449" />
   </component>
 </project>
