@@ -4,6 +4,7 @@ import "../styles/styles.css";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import * as tmPose from '@teachablemachine/pose';
+import Button from '@material-ui/core/Button';
 
 class Experiment extends React.Component {
     URL = "https://teachablemachine.withgoogle.com/models/2VOugyJp/";
@@ -110,26 +111,41 @@ class Experiment extends React.Component {
     render() {
         return (
             <Grid container className="Main-content">
-            <Grid item xs={12} sm={6}>
+             <Grid item xs={12}>
                 <Paper>
-                This is a grid Item
-                <button type="button" onClick = {this.init} style = {{fontFamily: "Century Gothic", fontSize: "40px", fontWeight: "bold"}}>Start</button>
-                <div id = "letters-container" style = {{fontSize: "100px"}}></div>
+                    <center>
+                    <br/>
+                    <div style = {{fontFamily: "Monotype Corsiva", fontSize: "30px", fontWeight: "bold"}} >Click here to begin!</div>
+                    <br/>
+                    <Button variant="contained"
+                    color="primary"
+                    onClick = {this.init}>
+                    Start
+                    </Button>
+                    <br/><br/>
+                    </center>
                 </Paper>
             </Grid>
-
+            <Grid item xs>
+                <Paper>
+                <center>
+                <div id = "letters-container" style = {{fontSize: "100px"}}></div>
+                </center>
+                </Paper>
+            </Grid>
+            <Grid item xs>
+                <Paper>
+                    <center>
+                    <div id = "words-container" style = {{fontSize: "70px", color: "red"}}></div>
+                    </center>
+                </Paper>
+            </Grid>
             <Grid item xs={12} sm={6}>
                 <Paper>
-                    This is a grid Item
+                    <center>
                     <div><canvas id="canvas"></canvas></div>
                     <div id="label-container" style = {{fontSize: "65px"}}></div>
-                </Paper>
-            </Grid>
-
-            <Grid item xs={12}>
-                <Paper>
-                    This is a grid Item
-                    <div id = "words-container" style = {{fontSize: "70px", color: "red"}}></div>
+                    </center>
                 </Paper>
             </Grid>
             <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
