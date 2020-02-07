@@ -2,15 +2,15 @@ import React from 'react';
 import "../styles/styles.css";
 
 import Card from '@material-ui/core/Card';
-import {CardContent, Container} from '@material-ui/core';
+import {CardContent, Container, fade} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-
+import Button from "@material-ui/core/Button";
+import Backdrop from "@material-ui/core/Backdrop";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 import {grey} from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
-
 
 const useStyles = makeStyles(theme => ({
 
@@ -64,22 +64,48 @@ const useStyles = makeStyles(theme => ({
 
     wordPrediction: {
         fontSize: '7em',
+    },
+
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        background: fade(theme.palette.primary.dark, 0.8),
+        color: 'white',
+
+        display: 'flex',
+        flexDirection: 'column',
     }
 }));
 
 function Experiment() {
     const styles = useStyles();
 
+    const [open, setOpen] = React.useState(true);
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Container maxWidth={"md"} className={[styles.bodyContainer, "Main-content"].join(" ")}>
+
+            <Backdrop className={styles.backdrop} open={open}>
+
+                <Typography variant={"h5"} align={"center"} gutterBottom>
+                    Please make sure you are viewing this on a desktop.<br/>
+                    Allow camera access in the top left corner of the screen.
+                </Typography>
+
+                <Button onClick={handleClose} variant={"contained"}>
+                    <b>Start Game</b>
+                </Button>
+            </Backdrop>
+
             <Card className={styles.letterSection} raised>
 
                 <CardContent className={styles.letterPredictionWrapper}>
                     <Box
                         className={styles.letterPrediction}
                         fontWeight={"fontWeightBold"}
-                        textAlign={"center"}
-                    >
+                        textAlign={"center"}>
                         B
                     </Box>
                 </CardContent>
