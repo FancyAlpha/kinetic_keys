@@ -1,151 +1,161 @@
 import React from 'react';
+
 import "../styles/styles.css";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import * as tmPose from '@teachablemachine/pose';
+import Button from '@material-ui/core/Button';
 
-import Card from '@material-ui/core/Card';
-import {CardContent, Container, fade} from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
-import Backdrop from "@material-ui/core/Backdrop";
+class Experiment extends React.Component {
+    URL = "https://teachablemachine.withgoogle.com/models/2VOugyJp/";
+    model;
+    webcam;
+    ctx;
+    labelContainer;
+    maxPredictions;
+    words;
+    letters;
+    currentWordIndex = 0;
+    currentLetterIndex = 0;
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
+    arrayWords = ["EAT", "BAT", "TEA", "BOT", "BUS"];
 
-import {grey} from "@material-ui/core/colors";
-import Box from "@material-ui/core/Box";
+    init = async () => {
 
-const useStyles = makeStyles(theme => ({
+        const modelURL = this.URL + "model.json";
+        const metadataURL = this.URL + "metadata.json";
 
-    bodyContainer: {
-        display: 'grid',
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "60% 1fr",
+        this.model = await tmPose.load(modelURL, metadataURL);
+        this.maxPredictions = this.model.getTotalClasses();
 
-        gridGap: theme.spacing(2),
-        padding: theme.spacing(2),
-        placeContent: "stretch",
-    },
+        // Convenience function to setup a webcam
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // Note: the pose library adds a tmPose object to your window (window.tmPose)
+        const size = 400;
+        const flip = true; // whether to flip the webcam
+        this.webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+        await this.webcam.setup(); // request access to the webcam
+        await this.webcam.play();
+        window.requestAnimationFrame(this.loop);
 
-    letterSection: {
-        gridColumn: "1 / span 1",
-        gridRow: "1 / span 1",
-
-        display: 'grid',
-        gridTemplate: "1fr 30px / 100%",
-    },
-
-    letterPredictionWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        lineHeight: 0,
-    },
-
-    letterPrediction: {
-        fontSize: '12em',
-    },
-
-    letterPredictionDescription: {
-        color: grey[500],
-    },
-
-    cameraSection: {
-        gridColumn: "2 / span 1",
-        gridRow: "1 / span 1",
-
-        background: grey["900"],
-    },
-
-    wordSection: {
-        gridColumn: "1 / span 2",
-        gridRow: "2 / span 1",
-
-        display: 'grid',
-        gridTemplate: "30px 1fr / 100%",
-    },
-
-    wordPrediction: {
-        fontSize: '7em',
-    },
-
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        background: fade(theme.palette.primary.dark, 0.8),
-        color: 'white',
-
-        display: 'flex',
-        flexDirection: 'column',
+        // append/get elements to the DOM
+        const canvas = document.getElementById("canvas");
+        canvas.width = size; canvas.height = size;
+        this.ctx = canvas.getContext("2d");
+        this.words = document.getElementById("words-container");
+        this.letters = document.getElementById("letters-container");
+        this.words.appendChild(document.createElement("div"));
+        this.letters.appendChild(document.createElement("div"));
+        this.labelContainer = document.getElementById("label-container");
+        this.labelContainer.appendChild(document.createElement("div"));
     }
-}));
 
-function Experiment() {
-    const styles = useStyles();
+    loop = async (timestamp) => {
+        this.webcam.update(); // update the webcam frame
+        await this.predict();
+        window.requestAnimationFrame(this.loop);
+    }
 
-    const [open, setOpen] = React.useState(true);
-    const handleClose = () => {
-        setOpen(false);
-    };
+    predict = async () => {
+        // Prediction #1: run input through posenet
+        // estimatePose can take in an image, video or canvas html element
+        const { pose, posenetOutput } = await this.model.estimatePose(this.webcam.canvas);
+        // Prediction 2: run input through teachable machine classification model
+        const prediction = await this.model.predict(posenetOutput);
+        let dominantPose;
+        let max = 0.00;
 
-    return (
-        <Container maxWidth={"md"} className={[styles.bodyContainer, "Main-content"].join(" ")}>
+        for (let i = 0; i < this.maxPredictions; i++) {
+          let value = prediction[i].probability.toFixed(2);
+            if (value > max) {
+                this.labelContainer.childNodes[0].innerHTML = prediction[i].className;
+                max = value;
+                dominantPose = i;
+            }
+        }
 
-            <Backdrop className={styles.backdrop} open={open}>
+        if (this.currentWordIndex < this.arrayWords.length) {
+            this.words.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex];
+        } else {
+            this.labelContainer.childNodes[0].innerHTML = "";
+            this.words.childNodes[0].innerHTML = "";
+            this.letters.childNodes[0].innerHTML = "CONGRATULATIONS."
+        }
 
-                <Typography variant={"h5"} align={"center"} gutterBottom>
-                    Please make sure you are viewing this on a desktop.<br/>
-                    Allow camera access in the top left corner of the screen.
-                </Typography>
+        if (this.currentWordIndex < this.arrayWords.length && this.currentLetterIndex < this.arrayWords[this.currentWordIndex].length) {
+            this.letters.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex);
+        } else {
+            this.currentWordIndex++;
+            this.currentLetterIndex = 0;
+        }
+        
+        if (this.currentWordIndex < this.arrayWords.length && prediction[dominantPose].className == this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex)) {
+            this.currentLetterIndex++;
+        }
+        // finally draw the poses
+        this.drawPose(pose);
+    }
 
-                <Button onClick={handleClose} variant={"contained"}>
-                    <b>Start Game</b>
-                </Button>
-            </Backdrop>
+    drawPose = async (pose) => {
+        if (this.webcam.canvas) {
+            this.ctx.drawImage(this.webcam.canvas, 0, 0);
+            // draw the keypoints and skeleton
+            if (pose) {
+                const minPartConfidence = 0.5;
+                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, this.ctx);
+                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, this.ctx);
+            }
+        }
+    }
 
-            <Card className={styles.letterSection} raised>
+    render() {
 
-                <CardContent className={styles.letterPredictionWrapper}>
-                    <Box
-                        className={styles.letterPrediction}
-                        fontWeight={"fontWeightBold"}
-                        textAlign={"center"}>
-                        B
-                    </Box>
-                </CardContent>
-
-                <Typography variant={"subtitle2"}
-                            align={"center"}
-                            className={styles.letterPredictionDescription}>
-                    Prediction
-                </Typography>
-
-            </Card>
-            <Card className={styles.cameraSection}>
-
-                <CardContent>
-                    {/* Camera goes here */}
-                </CardContent>
-            </Card>
-
-            <Card className={styles.wordSection}>
-
-                <Typography
-                    variant={"subtitle2"}
-                    align={"center"}
-                    className={styles.letterPredictionDescription}
-                    style={{marginTop: "auto"}}
-                >
-                    Try to spell this word out with your body!
-                </Typography>
-
-                <CardContent>
-                    <Box
-                        className={styles.wordPrediction}
-                        fontWeight={"fontWeightBold"}
-                        textAlign={"center"}>
-                        BOX {/* Make this all capitalized */}
-                    </Box>
-                </CardContent>
-            </Card>
-        </Container>
-    );
+        return (
+            <Grid container className="Main-content">
+             <Grid item xs={12}>
+                <Paper>
+                    <center>
+                    <br/>
+                    <div style = {{fontFamily: "Monotype Corsiva", fontSize: "30px", fontWeight: "bold"}} >Click here to begin!</div>
+                    <br/>
+                    <Button variant="contained"
+                    color="primary"
+                    onClick = {this.init}>
+                    Start
+                    </Button>
+                    <br/><br/>
+                    </center>
+                </Paper>
+            </Grid>
+            <Grid item xs>
+                <Paper>
+                <center>
+                <div id = "letters-container" style = {{fontSize: "100px"}}></div>
+                </center>
+                </Paper>
+            </Grid>
+            <Grid item xs>
+                <Paper>
+                    <center>
+                    <div id = "words-container" style = {{fontSize: "70px", color: "red"}}></div>
+                    </center>
+                </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <Paper>
+                    <center>
+                    <div><canvas id="canvas"></canvas></div>
+                    <div id="label-container" style = {{fontSize: "65px"}}></div>
+                    </center>
+                </Paper>
+            </Grid>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+        </Grid>
+        );
+    }
 }
+            
 
 export default Experiment;

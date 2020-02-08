@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/stopwatch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,22 +167,26 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580931759923" />
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1580790003803">
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1580790003803" />
-    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1580790003802">
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1581125388395" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
-    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1580790003802">
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1581125388395" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
-    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1580790003802">
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1581125388395" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1580790003802" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1581125388395" />
+    <state x="345" y="60" key="MultipleFileMergeDialog" timestamp="1581125587300">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="345" y="60" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1581125587300" />
     <state x="437" y="0" key="RollbackChangesDialog" timestamp="1580777732885">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -192,10 +199,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879667948" />
-    <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1580777746731">
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1581125566745">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777746731" />
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1581125566745" />
     <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1580931766213">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
