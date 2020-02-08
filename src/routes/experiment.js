@@ -1,12 +1,85 @@
 import React from 'react';
-
 import "../styles/styles.css";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+
+import Card from '@material-ui/core/Card';
+import {CardContent, Container, fade} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Button from "@material-ui/core/Button";
+import Backdrop from "@material-ui/core/Backdrop";
+
+import {withStyles} from '@material-ui/core/styles';
+
+import {grey} from "@material-ui/core/colors";
+import Box from "@material-ui/core/Box";
 import * as tmPose from '@teachablemachine/pose';
-import Button from '@material-ui/core/Button';
+
+
+const useStyles = theme => ({
+
+    bodyContainer: {
+        display: 'grid',
+        gridTemplateColumns: "1fr 1fr",
+        gridTemplateRows: "60% 1fr",
+
+        gridGap: theme.spacing(2),
+        padding: theme.spacing(2),
+        placeContent: "stretch",
+    },
+
+    letterSection: {
+        gridColumn: "1 / span 1",
+        gridRow: "1 / span 1",
+
+        display: 'grid',
+        gridTemplate: "1fr 30px / 100%",
+    },
+
+    letterPredictionWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        lineHeight: 0,
+    },
+
+    letterPrediction: {
+        fontSize: '4em',
+    },
+
+    letterPredictionDescription: {
+        color: grey[500],
+    },
+
+    cameraSection: {
+        gridColumn: "2 / span 1",
+        gridRow: "1 / span 1",
+
+        background: grey["900"],
+    },
+
+    wordSection: {
+        gridColumn: "1 / span 2",
+        gridRow: "2 / span 1",
+
+        display: 'grid',
+        gridTemplate: "30px 1fr / 100%",
+    },
+
+    wordPrediction: {
+        fontSize: '7em',
+    },
+
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        background: fade(theme.palette.primary.dark, 0.8),
+        color: 'white',
+
+        display: 'flex',
+        flexDirection: 'column',
+    },
+});
 
 class Experiment extends React.Component {
+
     URL = "https://teachablemachine.withgoogle.com/models/2VOugyJp/";
     model;
     webcam;
@@ -18,6 +91,8 @@ class Experiment extends React.Component {
         curWordInd: 0, // the index of the current word in the words array
 
         predictedLetter: "", // your prediction
+
+        backdropOpen: true,
     };
 
     words = ["EAT", "BAT", "TEA", "BOT", "BUS"];
@@ -82,6 +157,8 @@ class Experiment extends React.Component {
             }
         }
 
+        this.setState({predictedLetter: predictedClass});
+
         // console.log("I predicted: " + predictedClass);
 
         let curWord = this.words[this.state.curWordInd];
@@ -124,43 +201,84 @@ class Experiment extends React.Component {
         let styledWord = [];
 
         for (let i = 0; i < word.length; i++) {
-            styledWord.push(<span style={{color: i < this.state.curLetterInd ? "red" : "blue"}}>{word.charAt(i)}</span>);
+            styledWord.push(<span
+                style={{background: i < this.state.curLetterInd ? "green" : "none"}}>{word.charAt(i)}</span>);
         }
 
         return styledWord;
     };
 
     render() {
+
+        const {classes} = this.props;
+
         return (
-            <Grid container className="Main-content">
 
-                <Grid item xs={12} sm={6}>
-                    <Paper>
-                        <div>
-                            <canvas id="canvas"></canvas>
-                        </div>
-                        <div id="label-container" style={{fontSize: "65px"}}>{this.state.predictedLetter}</div>
-                    </Paper>
-                </Grid>
+            <Container maxWidth={"md"} className={[classes.bodyContainer, "Main-content"].join(" ")}>
 
+                <Backdrop className={classes.backdrop} open={this.state.backdropOpen} onClick={() => this.setState({backdropOpen: false})}>
 
-                <Grid item xs>
-                    <Paper>
-                        <div id="letters-container"
-                             style={{fontSize: "100px"}}>{this.words[this.state.curWordInd].charAt(this.state.curLetterInd)}</div>
-                    </Paper>
-                </Grid>
-                <Grid item xs>
-                    <Paper>
-                        <div id="words-container" style={{fontSize: "70px"}}>
-                            {this.renderWord()}
-                        </div>
-                    </Paper>
-                </Grid>
-            </Grid>
+                    <Typography variant={"h5"} align={"center"} gutterBottom>
+                        Please make sure you are viewing this on a desktop.<br/>
+                        Allow camera access in the top left corner of the screen.
+                    </Typography>
+
+                    <Button variant={"contained"}>
+                        <b>Start Game</b>
+                    </Button>
+                </Backdrop>
+
+                <Card className={classes.letterSection} raised>
+
+                    <CardContent className={classes.letterPrediction}>
+                        <Box
+                            className={classes.letterPrediction}
+                            fontWeight={"fontWeightBold"}
+                            textAlign={"center"}>
+                            {this.state.predictedLetter}
+                        </Box>
+                    </CardContent>
+
+                    <Typography
+                        className={classes.letterPredictionDescription}
+                        variant={"subtitle2"}
+                        align={"center"}>
+                        Prediction
+                    </Typography>
+                </Card>
+
+                <Card className={classes.cameraSection}>
+
+                    <CardContent>
+                        {/* Camera goes here */}
+                        <canvas id="canvas"/>
+
+                    </CardContent>
+                </Card>
+
+                <Card className={classes.wordSection}>
+
+                    <Typography
+                        className={classes.letterPredictionDescription}
+                        variant={"subtitle2"}
+                        align={"center"}
+                        style={{marginTop: "auto"}}>
+                        Try to spell this word out with your body!
+                    </Typography>
+
+                    <CardContent>
+                        <Box
+                            className={classes.wordPrediction}
+                            fontWeight={"fontWeightBold"}
+                            textAlign={"center"}>
+                            {this.renderWord()} {/* Make this all capitalized */}
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Container>
         );
     }
 }
 
 
-export default Experiment;
+export default withStyles(useStyles, {withTheme: true})(Experiment);
