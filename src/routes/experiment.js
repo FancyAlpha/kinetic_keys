@@ -13,62 +13,12 @@ class Experiment extends React.Component {
     ctx;
     labelContainer;
     maxPredictions;
+    words;
     letters;
     currentWordIndex = 0;
     currentLetterIndex = 0;
+
     arrayWords = ["EAT", "BAT", "TEA", "BOT", "BUS"];
-    lettersToDisplay = [];
-
-    constructor() {
-        super();
-        this.state = {
-            colorsForLetters: []
-        };
-
-        let newArray = [];
-
-        console.log(this.arrayWords[this.currentWordIndex]);
-
-        for (let k = 0; k < this.arrayWords[this.currentWordIndex].length; k++) {
-            newArray.push("red");
-        }
-
-        console.log(newArray);
-
-        this.setState({colorsForLetters: newArray});
-
-        console.log(this.state.colorsForLetters);
-
-        for (let k = 0; k < this.state.colorsForLetters.length; k++) {
-            this.lettersToDisplay.push(<span key = {k} style = {{color: this.state.colorsForLetters[k]}}>{this.arrayWords[this.currentWordIndex].charAt(k)} </span>); 
-        }
-
-        this.init();
-    }
-
-    makeAllRed = () => {
-
-        let newArray = [];
-
-        for (let k = 0; k < this.arrayWords[this.currentWordIndex].length; k++) {
-            newArray.push("red");
-        }
-
-        this.setState({colorsForLetters: newArray});
-
-        for (let k = 0; k < this.state.colorsForLetters.length; k++) {
-            this.lettersToDisplay.push(<span key = {k} style = {{color: this.state.colorsForLetters[k]}}>{this.arrayWords[this.currentWordIndex].charAt(k)} </span>); 
-        }
-
-    }
-
-    updateColor = () => {
-
-        for (let k = 0; k < this.state.colorsForLetters.length; k++) {
-            this.lettersToDisplay.push(<span key = {k} style = {{color: this.state.colorsForLetters[k]}}>{this.arrayWords[this.currentWordIndex].charAt(k)} </span>); 
-        }
-
-    }
 
     init = async () => {
 
@@ -93,7 +43,9 @@ class Experiment extends React.Component {
         const canvas = document.getElementById("canvas");
         canvas.width = size; canvas.height = size;
         this.ctx = canvas.getContext("2d");
+        this.words = document.getElementById("words-container");
         this.letters = document.getElementById("letters-container");
+        this.words.appendChild(document.createElement("div"));
         this.letters.appendChild(document.createElement("div"));
         this.labelContainer = document.getElementById("label-container");
         this.labelContainer.appendChild(document.createElement("div"));
@@ -114,6 +66,10 @@ class Experiment extends React.Component {
         let dominantPose;
         let max = 0.00;
 
+        for (let k = 0; k < this.arrayWords[this.currentWordIndex].length; k++) {
+            this.colorsForLetters.push("red");
+        }
+
         for (let i = 0; i < this.maxPredictions; i++) {
           let value = prediction[i].probability.toFixed(2);
             if (value > max) {
@@ -123,8 +79,11 @@ class Experiment extends React.Component {
             }
         }
 
-        if (this.currentWordIndex >= this.arrayWords.length) {
+        if (this.currentWordIndex < this.arrayWords.length) {
+            this.words.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex];
+        } else {
             this.labelContainer.childNodes[0].innerHTML = "";
+            this.words.childNodes[0].innerHTML = "";
             this.letters.childNodes[0].innerHTML = "CONGRATULATIONS."
         }
 
@@ -132,16 +91,11 @@ class Experiment extends React.Component {
             this.letters.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex);
         } else {
             this.currentWordIndex++;
-            this.makeAllRed();
             this.currentLetterIndex = 0;
         }
         
         if (this.currentWordIndex < this.arrayWords.length && prediction[dominantPose].className == this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex)) {
-            console.log(this.currentLetterIndex);
-            let newArray = this.state.colorsForLetters;
-            newArray[this.currentLetterIndex] = "green";
-            this.setState({colorsForLetters: newArray});
-            this.updateColor();
+            this.colorsForLetters[this.currentLetterIndex] = "green";
             this.currentLetterIndex++;
         }
         // finally draw the poses
@@ -161,8 +115,6 @@ class Experiment extends React.Component {
     }
 
     render() {
-        
-        let j = new Experiment();
 
         return (
             <Grid container className="Main-content">
@@ -173,7 +125,8 @@ class Experiment extends React.Component {
                     <div style = {{fontFamily: "Monotype Corsiva", fontSize: "30px", fontWeight: "bold"}} >Click here to begin!</div>
                     <br/>
                     <Button variant="contained"
-                    color="primary">
+                    color="primary"
+                    onClick = {this.init}>
                     Start
                     </Button>
                     <br/><br/>
@@ -189,9 +142,8 @@ class Experiment extends React.Component {
             </Grid>
             <Grid item xs>
                 <Paper>
-                    There will be text here
                     <center>
-                    {this.lettersToDisplay}
+                    <div id = "words-container" style = {{fontSize: "70px", color: "red"}}></div>
                     </center>
                 </Paper>
             </Grid>
@@ -208,18 +160,6 @@ class Experiment extends React.Component {
         </Grid>
         );
     }
-
-    // render() {
-      
-    //     this.setUp();
-
-    //     return (
-    //       <div>
-    //         {this.colorsForLetters}
-    //         {this.lettersToDisplay}
-    //       </div>
-    //     )
-    //   }
 }
             
 
