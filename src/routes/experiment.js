@@ -11,14 +11,24 @@ class Experiment extends React.Component {
     model;
     webcam;
     ctx;
-    labelContainer;
     maxPredictions;
-    words;
-    letters;
-    currentWordIndex = 0;
-    currentLetterIndex = 0;
 
-    arrayWords = ["EAT", "BAT", "TEA", "BOT", "BUS"];
+    state = {
+        curLetterInd: 0, // the index of the letter in the current word you are in
+        curWordInd: 0, // the index of the current word in the words array
+
+        predictedLetter: "", // your prediction
+    };
+
+    words = ["EAT", "BAT", "TEA", "BOT", "BUS"];
+
+    constructor(props) {
+        super(props);
+
+        console.log(this.words);
+        this.init().then(() => {
+        });
+    }
 
     init = async () => {
 
@@ -41,61 +51,61 @@ class Experiment extends React.Component {
 
         // append/get elements to the DOM
         const canvas = document.getElementById("canvas");
-        canvas.width = size; canvas.height = size;
+        canvas.width = size;
+        canvas.height = size;
         this.ctx = canvas.getContext("2d");
-        this.words = document.getElementById("words-container");
-        this.letters = document.getElementById("letters-container");
-        this.words.appendChild(document.createElement("div"));
-        this.letters.appendChild(document.createElement("div"));
-        this.labelContainer = document.getElementById("label-container");
-        this.labelContainer.appendChild(document.createElement("div"));
-    }
+    };
 
     loop = async (timestamp) => {
         this.webcam.update(); // update the webcam frame
         await this.predict();
         window.requestAnimationFrame(this.loop);
-    }
+    };
 
     predict = async () => {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
-        const { pose, posenetOutput } = await this.model.estimatePose(this.webcam.canvas);
+        const {pose, posenetOutput} = await this.model.estimatePose(this.webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await this.model.predict(posenetOutput);
         let dominantPose;
         let max = 0.00;
 
+        let predictedClass = "";
+
         for (let i = 0; i < this.maxPredictions; i++) {
-          let value = prediction[i].probability.toFixed(2);
+            let value = prediction[i].probability.toFixed(2);
             if (value > max) {
-                this.labelContainer.childNodes[0].innerHTML = prediction[i].className;
+                predictedClass = prediction[i].className;
                 max = value;
                 dominantPose = i;
             }
         }
 
-        if (this.currentWordIndex < this.arrayWords.length) {
-            this.words.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex];
-        } else {
-            this.labelContainer.childNodes[0].innerHTML = "";
-            this.words.childNodes[0].innerHTML = "";
-            this.letters.childNodes[0].innerHTML = "CONGRATULATIONS."
+        // console.log("I predicted: " + predictedClass);
+
+        let curWord = this.words[this.state.curWordInd];
+
+        // console.log(curWord);
+
+        // letter predicted correctly, move to next letter
+        if (predictedClass == curWord.charAt(this.state.curLetterInd)) {
+            console.log("Prediction is correct!: " + predictedClass);
+            this.setState({curLetterInd: this.state.curLetterInd + 1}); // is this right?
         }
 
-        if (this.currentWordIndex < this.arrayWords.length && this.currentLetterIndex < this.arrayWords[this.currentWordIndex].length) {
-            this.letters.childNodes[0].innerHTML = this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex);
-        } else {
-            this.currentWordIndex++;
-            this.currentLetterIndex = 0;
+        // entire word predicted correctly, move to next word
+        if (this.state.curLetterInd >= curWord.length) {
+            this.setState({curWordInd: this.state.curWordInd + 1, curLetterInd: 0});
         }
-        
-        if (this.currentWordIndex < this.arrayWords.length && prediction[dominantPose].className == this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex)) {
-            this.currentLetterIndex++;
+
+        if (this.state.curWordInd >= this.words.length) {
+            console.log("we are done with all words!");
         }
+
         // finally draw the poses
         this.drawPose(pose);
-    }
+    };
 
     drawPose = async (pose) => {
         if (this.webcam.canvas) {
@@ -107,55 +117,50 @@ class Experiment extends React.Component {
                 tmPose.drawSkeleton(pose.keypoints, minPartConfidence, this.ctx);
             }
         }
-    }
+    };
+
+    renderWord = () => {
+        let word = this.words[this.state.curWordInd];
+        let styledWord = [];
+
+        for (let i = 0; i < word.length; i++) {
+            styledWord.push(<span style={{color: i < this.state.curLetterInd ? "red" : "blue"}}>{word.charAt(i)}</span>);
+        }
+
+        return styledWord;
+    };
 
     render() {
-
         return (
             <Grid container className="Main-content">
-             <Grid item xs={12}>
-                <Paper>
-                    <center>
-                    <br/>
-                    <div style = {{fontFamily: "Monotype Corsiva", fontSize: "30px", fontWeight: "bold"}} >Click here to begin!</div>
-                    <br/>
-                    <Button variant="contained"
-                    color="primary"
-                    onClick = {this.init}>
-                    Start
-                    </Button>
-                    <br/><br/>
-                    </center>
-                </Paper>
+
+                <Grid item xs={12} sm={6}>
+                    <Paper>
+                        <div>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <div id="label-container" style={{fontSize: "65px"}}>{this.state.predictedLetter}</div>
+                    </Paper>
+                </Grid>
+
+
+                <Grid item xs>
+                    <Paper>
+                        <div id="letters-container"
+                             style={{fontSize: "100px"}}>{this.words[this.state.curWordInd].charAt(this.state.curLetterInd)}</div>
+                    </Paper>
+                </Grid>
+                <Grid item xs>
+                    <Paper>
+                        <div id="words-container" style={{fontSize: "70px"}}>
+                            {this.renderWord()}
+                        </div>
+                    </Paper>
+                </Grid>
             </Grid>
-            <Grid item xs>
-                <Paper>
-                <center>
-                <div id = "letters-container" style = {{fontSize: "100px"}}></div>
-                </center>
-                </Paper>
-            </Grid>
-            <Grid item xs>
-                <Paper>
-                    <center>
-                    <div id = "words-container" style = {{fontSize: "70px", color: "red"}}></div>
-                    </center>
-                </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <Paper>
-                    <center>
-                    <div><canvas id="canvas"></canvas></div>
-                    <div id="label-container" style = {{fontSize: "65px"}}></div>
-                    </center>
-                </Paper>
-            </Grid>
-            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
-        </Grid>
         );
     }
 }
-            
+
 
 export default Experiment;
