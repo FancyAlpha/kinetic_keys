@@ -1,151 +1,166 @@
 import React from 'react';
+
 import "../styles/styles.css";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import * as tmPose from '@teachablemachine/pose';
+import Button from '@material-ui/core/Button';
 
-import Card from '@material-ui/core/Card';
-import {CardContent, Container, fade} from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
-import Backdrop from "@material-ui/core/Backdrop";
+class Experiment extends React.Component {
+    URL = "https://teachablemachine.withgoogle.com/models/2VOugyJp/";
+    model;
+    webcam;
+    ctx;
+    maxPredictions;
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
+    state = {
+        curLetterInd: 0, // the index of the letter in the current word you are in
+        curWordInd: 0, // the index of the current word in the words array
 
-import {grey} from "@material-ui/core/colors";
-import Box from "@material-ui/core/Box";
-
-const useStyles = makeStyles(theme => ({
-
-    bodyContainer: {
-        display: 'grid',
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "60% 1fr",
-
-        gridGap: theme.spacing(2),
-        padding: theme.spacing(2),
-        placeContent: "stretch",
-    },
-
-    letterSection: {
-        gridColumn: "1 / span 1",
-        gridRow: "1 / span 1",
-
-        display: 'grid',
-        gridTemplate: "1fr 30px / 100%",
-    },
-
-    letterPredictionWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        lineHeight: 0,
-    },
-
-    letterPrediction: {
-        fontSize: '12em',
-    },
-
-    letterPredictionDescription: {
-        color: grey[500],
-    },
-
-    cameraSection: {
-        gridColumn: "2 / span 1",
-        gridRow: "1 / span 1",
-
-        background: grey["900"],
-    },
-
-    wordSection: {
-        gridColumn: "1 / span 2",
-        gridRow: "2 / span 1",
-
-        display: 'grid',
-        gridTemplate: "30px 1fr / 100%",
-    },
-
-    wordPrediction: {
-        fontSize: '7em',
-    },
-
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        background: fade(theme.palette.primary.dark, 0.8),
-        color: 'white',
-
-        display: 'flex',
-        flexDirection: 'column',
-    }
-}));
-
-function Experiment() {
-    const styles = useStyles();
-
-    const [open, setOpen] = React.useState(true);
-    const handleClose = () => {
-        setOpen(false);
+        predictedLetter: "", // your prediction
     };
 
-    return (
-        <Container maxWidth={"md"} className={[styles.bodyContainer, "Main-content"].join(" ")}>
+    words = ["EAT", "BAT", "TEA", "BOT", "BUS"];
 
-            <Backdrop className={styles.backdrop} open={open}>
+    constructor(props) {
+        super(props);
 
-                <Typography variant={"h5"} align={"center"} gutterBottom>
-                    Please make sure you are viewing this on a desktop.<br/>
-                    Allow camera access in the top left corner of the screen.
-                </Typography>
+        console.log(this.words);
+        this.init().then(() => {
+        });
+    }
 
-                <Button onClick={handleClose} variant={"contained"}>
-                    <b>Start Game</b>
-                </Button>
-            </Backdrop>
+    init = async () => {
 
-            <Card className={styles.letterSection} raised>
+        const modelURL = this.URL + "model.json";
+        const metadataURL = this.URL + "metadata.json";
 
-                <CardContent className={styles.letterPredictionWrapper}>
-                    <Box
-                        className={styles.letterPrediction}
-                        fontWeight={"fontWeightBold"}
-                        textAlign={"center"}>
-                        B
-                    </Box>
-                </CardContent>
+        this.model = await tmPose.load(modelURL, metadataURL);
+        this.maxPredictions = this.model.getTotalClasses();
 
-                <Typography variant={"subtitle2"}
-                            align={"center"}
-                            className={styles.letterPredictionDescription}>
-                    Prediction
-                </Typography>
+        // Convenience function to setup a webcam
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // Note: the pose library adds a tmPose object to your window (window.tmPose)
+        const size = 400;
+        const flip = true; // whether to flip the webcam
+        this.webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+        await this.webcam.setup(); // request access to the webcam
+        await this.webcam.play();
+        window.requestAnimationFrame(this.loop);
 
-            </Card>
-            <Card className={styles.cameraSection}>
+        // append/get elements to the DOM
+        const canvas = document.getElementById("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        this.ctx = canvas.getContext("2d");
+    };
 
-                <CardContent>
-                    {/* Camera goes here */}
-                </CardContent>
-            </Card>
+    loop = async (timestamp) => {
+        this.webcam.update(); // update the webcam frame
+        await this.predict();
+        window.requestAnimationFrame(this.loop);
+    };
 
-            <Card className={styles.wordSection}>
+    predict = async () => {
+        // Prediction #1: run input through posenet
+        // estimatePose can take in an image, video or canvas html element
+        const {pose, posenetOutput} = await this.model.estimatePose(this.webcam.canvas);
+        // Prediction 2: run input through teachable machine classification model
+        const prediction = await this.model.predict(posenetOutput);
+        let dominantPose;
+        let max = 0.00;
 
-                <Typography
-                    variant={"subtitle2"}
-                    align={"center"}
-                    className={styles.letterPredictionDescription}
-                    style={{marginTop: "auto"}}
-                >
-                    Try to spell this word out with your body!
-                </Typography>
+        let predictedClass = "";
 
-                <CardContent>
-                    <Box
-                        className={styles.wordPrediction}
-                        fontWeight={"fontWeightBold"}
-                        textAlign={"center"}>
-                        BOX {/* Make this all capitalized */}
-                    </Box>
-                </CardContent>
-            </Card>
-        </Container>
-    );
+        for (let i = 0; i < this.maxPredictions; i++) {
+            let value = prediction[i].probability.toFixed(2);
+            if (value > max) {
+                predictedClass = prediction[i].className;
+                max = value;
+                dominantPose = i;
+            }
+        }
+
+        // console.log("I predicted: " + predictedClass);
+
+        let curWord = this.words[this.state.curWordInd];
+
+        // console.log(curWord);
+
+        // letter predicted correctly, move to next letter
+        if (predictedClass == curWord.charAt(this.state.curLetterInd)) {
+            console.log("Prediction is correct!: " + predictedClass);
+            this.setState({curLetterInd: this.state.curLetterInd + 1}); // is this right?
+        }
+
+        // entire word predicted correctly, move to next word
+        if (this.state.curLetterInd >= curWord.length) {
+            this.setState({curWordInd: this.state.curWordInd + 1, curLetterInd: 0});
+        }
+
+        if (this.state.curWordInd >= this.words.length) {
+            console.log("we are done with all words!");
+        }
+
+        // finally draw the poses
+        this.drawPose(pose);
+    };
+
+    drawPose = async (pose) => {
+        if (this.webcam.canvas) {
+            this.ctx.drawImage(this.webcam.canvas, 0, 0);
+            // draw the keypoints and skeleton
+            if (pose) {
+                const minPartConfidence = 0.5;
+                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, this.ctx);
+                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, this.ctx);
+            }
+        }
+    };
+
+    renderWord = () => {
+        let word = this.words[this.state.curWordInd];
+        let styledWord = [];
+
+        for (let i = 0; i < word.length; i++) {
+            styledWord.push(<span style={{color: i < this.state.curLetterInd ? "red" : "blue"}}>{word.charAt(i)}</span>);
+        }
+
+        return styledWord;
+    };
+
+    render() {
+        return (
+            <Grid container className="Main-content">
+
+                <Grid item xs={12} sm={6}>
+                    <Paper>
+                        <div>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <div id="label-container" style={{fontSize: "65px"}}>{this.state.predictedLetter}</div>
+                    </Paper>
+                </Grid>
+
+
+                <Grid item xs>
+                    <Paper>
+                        <div id="letters-container"
+                             style={{fontSize: "100px"}}>{this.words[this.state.curWordInd].charAt(this.state.curLetterInd)}</div>
+                    </Paper>
+                </Grid>
+                <Grid item xs>
+                    <Paper>
+                        <div id="words-container" style={{fontSize: "70px"}}>
+                            {this.renderWord()}
+                        </div>
+                    </Paper>
+                </Grid>
+            </Grid>
+        );
+    }
 }
+
 
 export default Experiment;
