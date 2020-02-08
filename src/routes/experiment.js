@@ -65,7 +65,7 @@ class Experiment extends React.Component {
         const prediction = await this.model.predict(posenetOutput);
         let dominantPose;
         let max = 0.00;
-        
+
         for (let i = 0; i < this.maxPredictions; i++) {
           let value = prediction[i].probability.toFixed(2);
             if (value > max) {
@@ -91,7 +91,6 @@ class Experiment extends React.Component {
         }
         
         if (this.currentWordIndex < this.arrayWords.length && prediction[dominantPose].className == this.arrayWords[this.currentWordIndex].charAt(this.currentLetterIndex)) {
-            this.colorsForLetters[this.currentLetterIndex] = "green";
             this.currentLetterIndex++;
         }
         // finally draw the poses
