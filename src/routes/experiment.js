@@ -65,11 +65,7 @@ class Experiment extends React.Component {
         const prediction = await this.model.predict(posenetOutput);
         let dominantPose;
         let max = 0.00;
-
-        for (let k = 0; k < this.arrayWords[this.currentWordIndex].length; k++) {
-            this.colorsForLetters.push("red");
-        }
-
+        
         for (let i = 0; i < this.maxPredictions; i++) {
           let value = prediction[i].probability.toFixed(2);
             if (value > max) {
