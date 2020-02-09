@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/20c4825a-27c5-4ce7-be17-8a855d9683ee/deploy-status)](https://app.netlify.com/sites/kinetickeys/deploys)
+
 Kinetic Keys is fun experiment of TensorFlow's PoseNet model. The user, playing the role of the keyboard, types letters by acting them out with their body. Once they are done with a word, a new word is selected and the user continues to race against the clock to act out the words as quickly as possible. The project delves deep into how transfer learning can utilize existing highly trained models to create new models that run more efficiently and reliably, given good, well acquired training data. Moreover, it extensively leverages the React framework to create an enticing interface for users. 
 
 The following is the default readme contents.
