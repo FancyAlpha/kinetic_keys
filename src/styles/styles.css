@@ -15,3 +15,15 @@
 .Main-content {
   flex: 1;
 }
+
+.validated-letter {
+  background: rgba(139, 195, 74, 0.7);
+}
+
+.nonvalidated-letter {
+  background: none;
+}
+
+.current-letter {
+  border-bottom: 8px solid rgb(252, 186, 3);
+}

@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/FancyAlpha/kinetic_keys.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1X3XJPjkdL903dEzRoZl8w6H4OM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -122,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580931761681</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="integrated changes into experiment.js page - interface and functionality are now one">
+      <created>1581146565361</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1581146565361</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +175,8 @@
     <MESSAGE value="Redid experiment page grid layout" />
     <MESSAGE value="Redid experiment page grid layout using CSS grid" />
     <MESSAGE value="polished front-end of experiment page, todo: add backdrop before start as trigger for PoseNet init" />
-    <option name="LAST_COMMIT_MESSAGE" value="polished front-end of experiment page, todo: add backdrop before start as trigger for PoseNet init" />
+    <MESSAGE value="integrated changes into experiment.js page - interface and functionality are now one" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated changes into experiment.js page - interface and functionality are now one" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
@@ -170,10 +187,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="321" y="74" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879495847" />
-    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1580931759923">
+    <state x="45" y="0" key="CommitChangelistDialog2" timestamp="1581146564262">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1580931759923" />
+    <state x="45" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1581146564262" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -198,10 +215,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777732885" />
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1580931768698">
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1581146568521">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1580931768698" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1581146568521" />
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog" timestamp="1580879667948">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -210,9 +227,9 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1581125566745" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581145292338">
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581146567030">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581145292338" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581146567030" />
   </component>
 </project>

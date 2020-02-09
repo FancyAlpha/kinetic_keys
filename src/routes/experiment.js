@@ -12,6 +12,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {grey} from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
 import * as tmPose from '@teachablemachine/pose';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 const useStyles = theme => ({
@@ -92,6 +93,7 @@ class Experiment extends React.Component {
 
         predictedLetter: "", // your prediction
 
+        loadingFinished: false,
         backdropOpen: true,
     };
 
@@ -102,6 +104,8 @@ class Experiment extends React.Component {
 
         console.log(this.words);
         this.init().then(() => {
+            console.log("Finished initialization");
+            this.setState({loadingFinished: true});
         });
     }
 
@@ -122,16 +126,16 @@ class Experiment extends React.Component {
         this.webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
         await this.webcam.setup(); // request access to the webcam
         await this.webcam.play();
-        window.requestAnimationFrame(this.loop);
+        // window.requestAnimationFrame(this.loop); // loop starts here
 
         // append/get elements to the DOM
         const canvas = document.getElementById("canvas");
-        canvas.width = size;
+        // canvas.width = size;
         canvas.height = size;
         this.ctx = canvas.getContext("2d");
     };
 
-    loop = async (timestamp) => {
+    loop = async (timestamp) => { // todo find way to pause this when necessary
         this.webcam.update(); // update the webcam frame
         await this.predict();
         window.requestAnimationFrame(this.loop);
@@ -161,23 +165,27 @@ class Experiment extends React.Component {
 
         // console.log("I predicted: " + predictedClass);
 
-        let curWord = this.words[this.state.curWordInd];
+        if(this.state.curWordInd >= this.words.length) {
+            // done with game
+        } else {
+            let curWord = this.words[this.state.curWordInd];
 
-        // console.log(curWord);
+            // console.log(curWord);
 
-        // letter predicted correctly, move to next letter
-        if (predictedClass == curWord.charAt(this.state.curLetterInd)) {
-            console.log("Prediction is correct!: " + predictedClass);
-            this.setState({curLetterInd: this.state.curLetterInd + 1}); // is this right?
-        }
+            // letter predicted correctly, move to next letter
+            if (predictedClass == curWord.charAt(this.state.curLetterInd)) {
+                console.log("Prediction is correct!: " + predictedClass);
+                this.setState({curLetterInd: this.state.curLetterInd + 1}); // is this right?
+            }
 
-        // entire word predicted correctly, move to next word
-        if (this.state.curLetterInd >= curWord.length) {
-            this.setState({curWordInd: this.state.curWordInd + 1, curLetterInd: 0});
-        }
+            // entire word predicted correctly, move to next word
+            if (this.state.curLetterInd >= curWord.length) {
+                this.setState({curWordInd: this.state.curWordInd + 1, curLetterInd: 0});
+            }
 
-        if (this.state.curWordInd >= this.words.length) {
-            console.log("we are done with all words!");
+            if (this.state.curWordInd >= this.words.length) {
+                console.log("we are done with all words!");
+            }
         }
 
         // finally draw the poses
@@ -197,15 +205,47 @@ class Experiment extends React.Component {
     };
 
     renderWord = () => {
-        let word = this.words[this.state.curWordInd];
+
         let styledWord = [];
 
-        for (let i = 0; i < word.length; i++) {
-            styledWord.push(<span
-                style={{background: i < this.state.curLetterInd ? "green" : "none"}}>{word.charAt(i)}</span>);
+        if (this.state.curWordInd >= this.words.length) {
+            styledWord.push(<span>Congrats!</span>);
+        } else {
+            let word = this.words[this.state.curWordInd];
+
+            for (let i = 0; i < word.length; i++) {
+                let letterStyle = "";
+
+                if (i == this.state.curLetterInd) {
+                    letterStyle = "current-letter";
+                } else if (i < this.state.curLetterInd) {
+                    letterStyle = "validated-letter";
+                } else {
+                    letterStyle = "nonvalidated-letter";
+                }
+
+                styledWord.push(<span
+                    className={letterStyle}>{word.charAt(i)}</span>);
+            }
         }
 
         return styledWord;
+    };
+
+    renderButton = () => {
+
+        if (this.state.loadingFinished) {
+            return (<Button variant={"contained"}
+                            onClick={() => {
+                                this.setState({backdropOpen: false});
+                                window.requestAnimationFrame(this.loop); // loop starts here
+                            }}>
+
+                <b>Start Game</b>
+            </Button>);
+        } else {
+            return (<CircularProgress color="inherit"/>);
+        }
     };
 
     render() {
@@ -216,16 +256,14 @@ class Experiment extends React.Component {
 
             <Container maxWidth={"md"} className={[classes.bodyContainer, "Main-content"].join(" ")}>
 
-                <Backdrop className={classes.backdrop} open={this.state.backdropOpen} onClick={() => this.setState({backdropOpen: false})}>
+                <Backdrop className={classes.backdrop} open={this.state.backdropOpen}>
 
                     <Typography variant={"h5"} align={"center"} gutterBottom>
                         Please make sure you are viewing this on a desktop.<br/>
                         Allow camera access in the top left corner of the screen.
                     </Typography>
 
-                    <Button variant={"contained"}>
-                        <b>Start Game</b>
-                    </Button>
+                    {this.renderButton()}
                 </Backdrop>
 
                 <Card className={classes.letterSection} raised>
