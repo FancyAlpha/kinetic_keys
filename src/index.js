@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Helmet from 'react-helmet';
 
 import App from './App';
 
@@ -10,6 +11,9 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 ReactDOM.render((
     <Router>
+        <Helmet>
+            <title>Kinetic Keys</title>
+        </Helmet>
         <App/>
     </Router>), document.getElementById('root'));
 /** my code ends here **/

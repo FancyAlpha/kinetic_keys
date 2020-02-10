@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +52,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\tarak\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="C:\Users\tarak\AppData\Local\JetBrains\Toolbox\apps\PhpStorm\ch-0\193.6015.48\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -150,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581231643786</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added site link also">
+      <created>1581231857905</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581231857905</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +203,8 @@
     <MESSAGE value="integrated changes into experiment.js page - interface and functionality are now one" />
     <MESSAGE value="backdrop loading sequence added; word and canvas render appropriately; fixed out of bounds when words are over" />
     <MESSAGE value="added Netlify deploy status badge" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Netlify deploy status badge" />
+    <MESSAGE value="added site link also" />
+    <option name="LAST_COMMIT_MESSAGE" value="added site link also" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
@@ -201,10 +215,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="321" y="74" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879495847" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1581231642452">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1581231856745">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1581231642452" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1581231856745" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -229,10 +243,14 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="437" y="0" key="RollbackChangesDialog/0.0.1280.689@0.0.1280.689" timestamp="1580777732885" />
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1581231647868">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1581370101369">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1581231647868" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1581370101369" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1581231862176">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1581231862176" />
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog" timestamp="1580879667948">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -241,9 +259,9 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1581125566745" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581231787829">
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581372409927">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581231787829" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581372409927" />
   </component>
 </project>

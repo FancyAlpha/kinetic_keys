@@ -22,10 +22,14 @@ export default function Home() {
 
     return (
         <header className="App-content Main-content">
-            <Typography variant="h1" component={"h1"}>Kinetic Keys</Typography>
+            <Typography variant="h1" component={"h1"} className={classes.spaced}>
+                <span className={"validated-letter"}>Kinetic</span>&nbsp;
+                <span className={"current-letter"}>Keys</span>
+            </Typography>
             <Typography variant="subtitle1">Type words with your body!</Typography>
             <Button variant="contained"
                     color="secondary"
+                    size="large"
                     endIcon={<SendIcon/>}
                     className={classes.spaced}
                     component={Link}

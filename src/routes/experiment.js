@@ -2,7 +2,7 @@ import React from 'react';
 import "../styles/styles.css";
 
 import Card from '@material-ui/core/Card';
-import {CardContent, Container, fade} from '@material-ui/core';
+import {CardContent, Container, Dialog, fade} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -13,13 +13,16 @@ import {grey} from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
 import * as tmPose from '@teachablemachine/pose';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import PauseIcon from '@material-ui/icons/Pause';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import Fab from "@material-ui/core/Fab";
 
 
 const useStyles = theme => ({
 
     bodyContainer: {
         display: 'grid',
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: "1fr 2fr",
         gridTemplateRows: "60% 1fr",
 
         gridGap: theme.spacing(2),
@@ -39,11 +42,17 @@ const useStyles = theme => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        alignContent: 'center',
         lineHeight: 0,
     },
 
     letterPrediction: {
-        fontSize: '4em',
+        fontSize: '3em',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+        color: theme.palette.primary.dark,
     },
 
     letterPredictionDescription: {
@@ -55,6 +64,10 @@ const useStyles = theme => ({
         gridRow: "1 / span 1",
 
         background: grey["900"],
+
+        display: 'flex',
+        alignContent: 'center',
+        justifyContent: 'center',
     },
 
     wordSection: {
@@ -69,14 +82,29 @@ const useStyles = theme => ({
         fontSize: '7em',
     },
 
+    floatingButton: {
+        position: 'absolute',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        zIndex: theme.zIndex.drawer + 2,
+    },
+
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
-        background: fade(theme.palette.primary.dark, 0.8),
         color: 'white',
 
         display: 'flex',
         flexDirection: 'column',
     },
+
+    initBackdrop: {
+        background: fade(theme.palette.primary.dark, 0.8),
+    },
+
+    canvas: {
+        width: 'auto',
+        height: '100%',
+    }
 });
 
 class Experiment extends React.Component {
@@ -95,6 +123,7 @@ class Experiment extends React.Component {
 
         loadingFinished: false,
         backdropOpen: true,
+        paused: true,
     };
 
     words = ["EAT", "BAT", "TEA", "BOT", "BUS"];
@@ -130,15 +159,19 @@ class Experiment extends React.Component {
 
         // append/get elements to the DOM
         const canvas = document.getElementById("canvas");
-        // canvas.width = size;
-        canvas.height = size;
+        canvas.width = canvas.height = size;
         this.ctx = canvas.getContext("2d");
     };
 
-    loop = async (timestamp) => { // todo find way to pause this when necessary
-        this.webcam.update(); // update the webcam frame
-        await this.predict();
+    loop = async (timestamp) => {
+
+        if (!this.state.paused) {
+            this.webcam.update(); // update the webcam frame
+            await this.predict();
+        }
+
         window.requestAnimationFrame(this.loop);
+
     };
 
     predict = async () => {
@@ -165,7 +198,7 @@ class Experiment extends React.Component {
 
         // console.log("I predicted: " + predictedClass);
 
-        if(this.state.curWordInd >= this.words.length) {
+        if (this.state.curWordInd >= this.words.length) {
             // done with game
         } else {
             let curWord = this.words[this.state.curWordInd];
@@ -235,16 +268,29 @@ class Experiment extends React.Component {
     renderButton = () => {
 
         if (this.state.loadingFinished) {
-            return (<Button variant={"contained"}
-                            onClick={() => {
-                                this.setState({backdropOpen: false});
-                                window.requestAnimationFrame(this.loop); // loop starts here
-                            }}>
-
-                <b>Start Game</b>
-            </Button>);
+            return (
+                <Button
+                    variant={"contained"}
+                    onClick={() => {
+                        this.setState({backdropOpen: false, paused: false});
+                        window.requestAnimationFrame(this.loop); // loop starts here
+                    }}>
+                    <b>Start Game</b>
+                </Button>);
         } else {
             return (<CircularProgress color="inherit"/>);
+        }
+    };
+
+    renderPause = () => {
+        if (!this.state.paused) {
+            // window.requestAnimationFrame(this.loop);
+        }
+
+        if (this.state.paused) {
+            return (<PlayArrowIcon/>);
+        } else {
+            return (<PauseIcon/>);
         }
     };
 
@@ -256,7 +302,9 @@ class Experiment extends React.Component {
 
             <Container maxWidth={"md"} className={[classes.bodyContainer, "Main-content"].join(" ")}>
 
-                <Backdrop className={classes.backdrop} open={this.state.backdropOpen}>
+                <Backdrop
+                    className={[classes.backdrop, classes.initBackdrop].join(" ")}
+                    open={this.state.backdropOpen}>
 
                     <Typography variant={"h5"} align={"center"} gutterBottom>
                         Please make sure you are viewing this on a desktop.<br/>
@@ -265,6 +313,24 @@ class Experiment extends React.Component {
 
                     {this.renderButton()}
                 </Backdrop>
+
+                <Backdrop
+                    className={classes.backdrop}
+                    open={!this.state.backdropOpen && this.state.paused}>
+                    <Typography variant={"h1"}>
+                        <b>Game Paused</b>
+                    </Typography>
+                </Backdrop>
+
+                <Fab color={"secondary"}
+                     className={classes.floatingButton}
+                     aria-label="pause"
+                     disabled={this.state.backdropOpen}
+                     onClick={() => {
+                         this.setState({paused: !this.state.paused});
+                     }}>
+                    {this.renderPause()}
+                </Fab>
 
                 <Card className={classes.letterSection} raised>
 
@@ -287,11 +353,11 @@ class Experiment extends React.Component {
 
                 <Card className={classes.cameraSection}>
 
-                    <CardContent>
+                    {/*<CardContent>*/}
                         {/* Camera goes here */}
-                        <canvas id="canvas"/>
+                        <canvas id="canvas" className={classes.canvas}/>
 
-                    </CardContent>
+                    {/*</CardContent>*/}
                 </Card>
 
                 <Card className={classes.wordSection}>
@@ -304,14 +370,14 @@ class Experiment extends React.Component {
                         Try to spell this word out with your body!
                     </Typography>
 
-                    <CardContent>
+                    {/*<CardContent>*/}
                         <Box
                             className={classes.wordPrediction}
                             fontWeight={"fontWeightBold"}
                             textAlign={"center"}>
                             {this.renderWord()} {/* Make this all capitalized */}
                         </Box>
-                    </CardContent>
+                    {/*</CardContent>*/}
                 </Card>
             </Container>
         );

@@ -24,6 +24,12 @@ const useStyles = makeStyles(theme => ({
             flexGrow: 1,
         },
 
+        navIcons: {
+            zIndex: theme.zIndex.drawer + 2,
+
+
+        },
+
         primaryHover: {
             '&:hover': {
                 color: theme.palette.primary.dark,
@@ -55,7 +61,7 @@ function App() {
             <div className={"root"}>
                 <Toolbar variant={"dense"}>
 
-                    <Link to={"/"}>
+                    <Link to={"/"} className={styles.navIcons}>
                         <IconButton aria-label="menu" className={styles.primaryHover}>
                             <HomeIcon/>
                         </IconButton>
@@ -77,8 +83,8 @@ function App() {
                 <Route path="/" exact component={Home}/>
                 <Route path="/experiment" exact component={Experiment}/>
 
-                <footer>
-                    <Container className={styles.footer}>
+                <footer className={styles.footer}>
+                    <Container>
                         <Typography variant={"caption"}>
                             &copy; 2020 Kinetic Keys project by Mehul
                             Daruka, Mayank Daruka, and Pranav Rayudu.
