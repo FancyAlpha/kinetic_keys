@@ -16,7 +16,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Fab from "@material-ui/core/Fab";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from '@material-ui/lab/Alert';
+import {shuffle} from "@tensorflow/tfjs-core/dist/util";
 
 const useStyles = theme => ({
 
@@ -123,6 +125,7 @@ class Experiment extends React.Component {
 
         loadingFinished: false,
         backdropOpen: true,
+        showWord: false,
         paused: true,
     };
 
@@ -131,6 +134,7 @@ class Experiment extends React.Component {
     constructor(props) {
         super(props);
 
+        shuffle(this.words);
         console.log(this.words);
         this.init().then(() => {
             console.log("Finished initialization");
@@ -213,7 +217,12 @@ class Experiment extends React.Component {
 
             // entire word predicted correctly, move to next word
             if (this.state.curLetterInd >= curWord.length) {
-                this.setState({curWordInd: this.state.curWordInd + 1, curLetterInd: 0});
+                this.setState({
+                    curWordInd: this.state.curWordInd + 1,
+                    curLetterInd: 0
+                });
+
+                this.showWordNotification();
             }
 
             if (this.state.curWordInd >= this.words.length) {
@@ -294,6 +303,19 @@ class Experiment extends React.Component {
         }
     };
 
+    showWordNotification = () => {
+        this.setState({showWord: true});
+    };
+
+    hideWordNotification = (event, reason) => {
+
+        if (reason == 'clickaway') {
+            return;
+        }
+
+        this.setState({showWord: false});
+    };
+
     render() {
 
         const {classes} = this.props;
@@ -321,6 +343,15 @@ class Experiment extends React.Component {
                         <b>Game Paused</b>
                     </Typography>
                 </Backdrop>
+
+                <Snackbar open={this.state.showWord}
+                          anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+                          autoHideDuration={4000}
+                          onClose={this.hideWordNotification}>
+                    <Alert variant={"filled"} severity={"success"}>
+                        {this.words[this.state.curWordInd < 1 ? 0 : this.state.curWordInd - 1]} done!
+                    </Alert>
+                </Snackbar>
 
                 <Fab color={"secondary"}
                      className={classes.floatingButton}
@@ -352,12 +383,7 @@ class Experiment extends React.Component {
                 </Card>
 
                 <Card className={classes.cameraSection}>
-
-                    {/*<CardContent>*/}
-                        {/* Camera goes here */}
-                        <canvas id="canvas" className={classes.canvas}/>
-
-                    {/*</CardContent>*/}
+                    <canvas id="canvas" className={classes.canvas}/>
                 </Card>
 
                 <Card className={classes.wordSection}>
@@ -371,12 +397,12 @@ class Experiment extends React.Component {
                     </Typography>
 
                     {/*<CardContent>*/}
-                        <Box
-                            className={classes.wordPrediction}
-                            fontWeight={"fontWeightBold"}
-                            textAlign={"center"}>
-                            {this.renderWord()} {/* Make this all capitalized */}
-                        </Box>
+                    <Box
+                        className={classes.wordPrediction}
+                        fontWeight={"fontWeightBold"}
+                        textAlign={"center"}>
+                        {this.renderWord()} {/* Make this all capitalized */}
+                    </Box>
                     {/*</CardContent>*/}
                 </Card>
             </Container>

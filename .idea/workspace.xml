@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="">
+    <list default="true" id="dd03a0a5-2643-49b8-aaab-72700a72e81a" name="Default Changelist" comment="added notifications for">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/experiment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581231857905</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added pause, title in tab, and visual rearrangements. TODO: add more words and word transitions">
+      <created>1581372854839</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1581372854839</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +208,8 @@
     <MESSAGE value="backdrop loading sequence added; word and canvas render appropriately; fixed out of bounds when words are over" />
     <MESSAGE value="added Netlify deploy status badge" />
     <MESSAGE value="added site link also" />
-    <option name="LAST_COMMIT_MESSAGE" value="added site link also" />
+    <MESSAGE value="added pause, title in tab, and visual rearrangements. TODO: add more words and word transitions" />
+    <option name="LAST_COMMIT_MESSAGE" value="added pause, title in tab, and visual rearrangements. TODO: add more words and word transitions" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="1" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580316531704">
@@ -215,10 +220,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="321" y="74" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879495847" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1581231856745">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1581384547648">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1581231856745" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1581384547648" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1581125388395">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -247,21 +252,21 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1581370101369" />
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1581231862176">
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2" timestamp="1581373864786">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1581231862176" />
+    <state x="233" y="79" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1581373864786" />
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog" timestamp="1580879667948">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="426" y="135" key="git4idea.merge.GitMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1580879667948" />
-    <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1581125566745">
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog" timestamp="1581380449284">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1581125566745" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581372409927">
+    <state x="363" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1581380449284" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1581380446526">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581372409927" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1581380446526" />
   </component>
 </project>
