@@ -129,7 +129,8 @@ class Experiment extends React.Component {
         paused: true,
     };
 
-    words = ["EAT", "BAT", "TEA", "BOT", "BUS"];
+    words = ["EAT", "BAT", "TEA", "BOT", "BUS", "BOATS", "STAB", "BIT",
+             "OBTUSE", "SET", "BETS", "OUT", "SOB", "TAB", "BEAST", "BASE", "SEAT", "BEST"];
 
     constructor(props) {
         super(props);
